@@ -129,7 +129,16 @@ end
 function t.filesystem.cp(self, originPath, destPath)
 	local sh = io.open(originPath, "r")
 	local dh = io.open(destPath, "w")
-
+	local size = filesystem.size(sh)
+	local blocks = math.ceil(size / self.blockSize)
+	for i = 1, blocks, 1
+	do
+		local chunk = sh:read(self.blockSize)
+		dh:write(chunk)
+	end
+	sh:close()
+	dh:close()
+	return true
 end
 --!end
 --!ifndef NO_URL
