@@ -67,7 +67,7 @@ function t.string.chars(str)
 	local i = 1
 	return function()
 		local res = string.sub(str, i)
-		if res == "" or i > #str then return nil
+		if res == "" or i > #str then return nil end
 		i = i + 1
 		return res
 	end
@@ -111,10 +111,10 @@ end
 function t.filesystem.chunk_iterate(self, path)
 	local h = io.open(path, "r")
 	local size = filesystem.size(path)
-	-- local blocks = math.ceil(size / self.blockSize)
+	local blocks = math.ceil(size / self.blockSize)
 	-- local i = 0
 	return function ()
-		return h:read(self.blockSize)
+		return h:read(self.blockSize), blocks
 	end
 end
 
@@ -200,4 +200,8 @@ function t.bytes.to_hex(str)
 	end
 	return out
 end
+--!end
+
+--!ifndef NO_RET
+return t
 --!end
