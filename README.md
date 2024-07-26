@@ -14,3 +14,5 @@ bstdprod.lua is the default build of bstd.lua in this repository targetting Open
 - `TARGET=OpenOS`: Target OpenOS (to be done)
 ### macro.ts
 This is a macro preprocessor that is used in this project. Written for Bun, might not work on other runtimes. Once it gets mature enough it'll probably be moved to its own repository.
+### Running Tests
+First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)

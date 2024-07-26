@@ -1,27 +1,10 @@
---!ifndef NO_FILESYSTEM
-local filesystem = require("filesystem")
---!end
 local t = {
---!ifndef NO_STRING
 	string = {},
---!end
---!ifndef NO_TABLE
 	table = {},
---!end
---!ifndef NO_FILESYSTEM
-	filesystem = {
-		blockSize = 4096
-	},
---!end
---!ifndef NO_URL
 	url = {},
---!end
---!ifndef NO_BYTES
 	bytes = {}
---!end
 }
 
---!ifndef NO_STRING
 -- Split a string, using Lua patterns
 -- `str` is the string to split
 -- `sp` is the separator
@@ -83,8 +66,6 @@ function t.string.chars(str)
 		return res
 	end
 end
---!end
---!ifndef NO_TABLE
 -- Checks if a table has a specified key.
 -- Returns a boolean.
 function t.table.has_key(tab, key)
@@ -122,54 +103,6 @@ function t.table.from_iterator(it)
 	end
 	return tab
 end
-
-function t.table.at(tab, p)
-	if p > 0 then
-		return tab[p]
-	else
-		return tab[#tab - p]
-	end
-end
---!end
---!ifndef NO_FILESYSTEM
--- Creates an iterator going over the chunks of a file, also has a block argument in the iterator
--- specifying how many blocks the file has.
-function t.filesystem.chunk_iterate(self, path)
-	local h = io.open(path, "r")
-	local size = filesystem.size(path)
-	local blocks = math.ceil(size / self.blockSize)
-	-- local i = 0
-	return function ()
-		return h:read(self.blockSize), blocks
-	end
-end
--- Reads an entire file into RAM.
--- Returns an string.
-function t.filesystem.readfile(self, path)
-	local payload = ""
-	for chunk in self:chunk_iterate(path)
-	do
-		payload = payload .. chunk
-	end
-	return payload
-end
--- Copy a file from `originPath` to `destPath` (destination path).
-function t.filesystem.cp(self, originPath, destPath)
-	local sh = io.open(originPath, "r")
-	local dh = io.open(destPath, "w")
-	local size = filesystem.size(sh)
-	local blocks = math.ceil(size / self.blockSize)
-	for i = 1, blocks, 1
-	do
-		local chunk = sh:read(self.blockSize)
-		dh:write(chunk)
-	end
-	sh:close()
-	dh:close()
-	return true
-end
---!end
---!ifndef NO_URL
 -- totally not taken from /bin/pastebin.lua
 -- Encodes an URL to be used in a string. (like " " -> "%20")
 function t.url.encode(code)
@@ -191,26 +124,6 @@ function t.url.decode(code)
 	end
 	return code
 end
---!end
---!ifdef INCL_FSTR
-function t.f(str, ...) -- format strings
-	local out = "" -- in case you want to use this instead of string.format for whatever reason
-	local pos = 1
-	repeat
-		local dStart, dEnd = string.find(str, "{%d+}", pos)
-		if dStart == nil then break end
-		local indexStr = string.sub(str, dStart+1, dEnd-1)
-		local index = tonumber(indexStr)
-		print(indexStr)
-		if index == nil or index < 1 then error('Invalid format string index at ' .. dStart) end
-		out = out .. string.sub(str, pos, dStart - 1) .. select(index, ...)
-		pos = dEnd+1
-	until pos >= #str
-	out = out .. string.sub(str, pos, #str)
-	return out
-end
---!end
---!ifndef NO_BYTES
 -- Creates an iterator going over the bytes of a string. Each iteration has a number argument.
 function t.bytes.string(str)
 	local it = t.string.chars(str)
@@ -241,8 +154,6 @@ function t.bytes.to_hex(str)
 	end
 	return out
 end
---!end
 
---!ifndef NO_RET
 return t
---!end
+
