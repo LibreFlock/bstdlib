@@ -128,7 +128,7 @@ function t.table.at(tab, p)
 	if p > 0 then
 		return tab[p]
 	else
-		return tab[#tab - p]
+		return tab[#tab + (p + 1)] -- i hate 1-based indexingi hate 1-based indexedi hate-
 	end
 end
 --!end
