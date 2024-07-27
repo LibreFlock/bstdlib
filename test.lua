@@ -11,34 +11,35 @@ local function expect(name, value)
 		_add_error = function(self, err)
 			self.errors = self.errors .. err .. "\n"
 			self.success = false
+			return self
 		end,
 		equals_to = function(self, b)
 			if self.val ~= b then
-				self._add_error(string.format("value '%s' expected to be '%s' but got '%s' instead", self.name, self.val, b))
+				return self:_add_error(string.format("value '%s' expected to be '%s' but got '%s' instead", self.name, self.val, b))
 			end
 			return self
 		end,
 		not_equal_to = function(self, b)
 			if self.val == b then
-				self._add_error(string.format("value '%s' expected NOT to be '%s' but got it anyway", self.name, b))
+				self:_add_error(string.format("value '%s' expected NOT to be '%s' but got it anyway", self.name, b))
 			end
 			return self
 		end,
 		is_true = function(self)
 			if not self.val then
-				self._add_error(string.format("value '%s' expected to be true but it was false.", self.name)
+				self:_add_error(string.format("value '%s' expected to be true but it was false.", self.name))
 			end
 			return self
 		end,
 		is_false = function(self)
 			if self.val then
-				self._add_error(string.format("value '%s' expected to be false but it was true.", self.name)
+				self:_add_error(string.format("value '%s' expected to be false but it was true.", self.name))
 			end
 			return self
 		end,
 		table_equal_to = function(self, b)
 			if not table_equals(self.val, b) then
-				self._add_error(string.format("table '%s' expected to be %s but got %s instead.", self.name, 'TODO', 'TODO'))
+				self:_add_error(string.format("table '%s' expected to be %s but got %s instead.", self.name, 'TODO', 'TODO'))
 			end
 			return self
 		end,
@@ -46,8 +47,14 @@ local function expect(name, value)
 			if self.success then
 				return true
 			end
+			-- print(self.success, #self.errors)
 			return self.errors
 		end,
+		expect = function(self, name, value)
+			self.name = name
+			self.val = value
+			return self
+		end
 	}
 end
 
@@ -64,7 +71,7 @@ end
 local function test(text, func)
 	io.write(string.format("  - %s ... ", text))
 	local r = func()
-	if r then
+	if r == true then
 		io.write("ok\n")
 		success = success + 1
 	elseif type(r) == "string" then
@@ -183,11 +190,15 @@ suite('table', function()
 	end)
 	test('at', function ()
 		local target = {1, 2, 3, 4}
-		return bstd.table.at(target, 1) == 1 and
-			bstd.table.at(target, 2) == 2 and
-			bstd.table.at(target, 3) == 3 and
-			bstd.table.at(target, 4) == 4 and
-			bstd.table.at(target, -1) == 4
+		--return bstd.table.at(target, 1) == 1 and
+		--	bstd.table.at(target, 2) == 2 and
+		--	bstd.table.at(target, 3) == 3 and
+		--	bstd.table.at(target, 4) == 4 and
+		--	bstd.table.at(target, -1) == 4
+		return expect("at(target, 1)", bstd.table.at(target, 1)):equals_to(1)
+			:expect("at(target, 2)", bstd.table.at(target, 2)):equals_to(2)
+			:expect("at(target, 3)", bstd.table.at(target, 3)):equals_to(3)
+			:done()
 	end)
 end)
 suite('filesystem', function()
