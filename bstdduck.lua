@@ -13,6 +13,7 @@ function t.string.isplit(str, sp)
 	if sp == nil then
 		sp = "%s"
 	end
+	local mstr = "\0" .. str .. "\0" -- TODO: make sure a space gets added if the input *starts or ends* with the separator
 	return string.gmatch(str, "([^" .. sp .. "]+)")
 end
 -- Safe version of string.isplit, doesn't use Lua patterns
@@ -53,14 +54,14 @@ end
 
 -- Checks if a string (`str`) ends with another (`s`)
 function t.string.ends_with(str, s)
-	return string.sub(str, #str, #str-#s) == s
+	return string.sub(str, #str-#s+1, #str) == s
 end
 
 -- Creates an iterator going over every character on a string.
 function t.string.chars(str)
 	local i = 1
 	return function()
-		local res = string.sub(str, i)
+		local res = string.sub(str, i, i)
 		if res == "" or i > #str then return nil end
 		i = i + 1
 		return res
@@ -102,6 +103,14 @@ function t.table.from_iterator(it)
 		table.insert(tab, value)
 	end
 	return tab
+end
+
+function t.table.at(tab, p)
+	if p > 0 then
+		return tab[p]
+	else
+		return tab[#tab - p]
+	end
 end
 -- totally not taken from /bin/pastebin.lua
 -- Encodes an URL to be used in a string. (like " " -> "%20")
