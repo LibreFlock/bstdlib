@@ -234,7 +234,7 @@ suite('bytes', function()
 	local target = "hello"
 	test('string', function()
 		local s = "bytes.string(target)"
-		return expect(s, from_iter(bstd.bytes.string(target))):table_equal({104, 101, 108, 108, 111})
+		return expect(s, from_iter(bstd.bytes.string(target))):table_equal_to({104, 101, 108, 108, 111})
 		:done()
 	end)
 end)
