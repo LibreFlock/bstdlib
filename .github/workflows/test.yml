@@ -19,3 +19,10 @@ jobs:
       run: |
         bun ./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM
         lua test.lua
+    - uses: actions/upload-artifact@v4
+      with:
+        name: bstd.lua
+        path: bstdduck.lua
+        if-no-files-found: warn
+        retention-days: 5
+
