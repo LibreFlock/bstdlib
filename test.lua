@@ -232,10 +232,19 @@ suite('url', function()
 end)
 suite('bytes', function()
 	local target = "hello"
+	local t2 = "454647"
 	test('string', function()
 		local s = "bytes.string(target)"
 		return expect(s, from_iter(bstd.bytes.string(target))):table_equal_to({104, 101, 108, 108, 111})
 		:done()
+	end)
+	test('from_hex', function()
+		local s = "bytes.from_hex(t2)"
+		return expect(s, bstd.bytes.from_hex(t2)):equals_to("EFG"):done()
+	end)
+	test('to_hex', function()
+		local s = "bytes.to_hex('EFG')"
+		return expect(s, bstd.bytes.to_hex("EFG")):equals_to(t2):done()
 	end)
 end)
 -- table_debug(bstd.string.split("/hey/suss/aaaaa", "/"))
