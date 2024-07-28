@@ -230,6 +230,14 @@ suite('url', function()
 			bstd.url.decode('Hello+world%21') == "Hello world!"
 	end)
 end)
+suite('bytes', function()
+	local target = "hello"
+	test('string', function()
+		local s = "bytes.string(target)"
+		return expect(s, from_iter(bstd.bytes.string(target))):table_equal({104, 101, 108, 108, 111})
+		:done()
+	end)
+end)
 -- table_debug(bstd.string.split("/hey/suss/aaaaa", "/"))
 -- local b = bstd.string.split("hey/duck/sus", "/")
 -- print(tostring(table_equals(b, d)))
