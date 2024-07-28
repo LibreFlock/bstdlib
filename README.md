@@ -24,7 +24,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] UUID
 - [ ] path
 - [ ] ANSI colors
-- [ ] Bi-directional tables
+- [ ] Enums
 - [ ] OOP stuff
 - [ ] string.trim
 - [ ] table.deep\_equal
