@@ -17,7 +17,10 @@ local t = {
 	url = {},
 --!end
 --!ifndef NO_BYTES
-	bytes = {}
+	bytes = {},
+--!end
+--!ifndef NO_VEC2
+	vec2 = {}
 --!end
 }
 
@@ -241,6 +244,20 @@ function t.bytes.to_hex(str)
 		out = out .. string.format("%x", ch)
 	end
 	return out
+end
+--!end
+
+--!ifndef NO_VEC2
+function t.vec2.new(px, py)
+	local x, y = px, py
+	if type(px) == "table" then
+		x = px[1] or px.x
+		y = px[2] or px.y
+	end
+	return {
+		x = x,
+		y = y
+	}
 end
 --!end
 
