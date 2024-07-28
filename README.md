@@ -22,25 +22,30 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] Split test runner's helper functions into a different library to avoid bloat
 - [ ] vec2
 - [ ] vec3
+- [ ] Enums
+- [ ] table.deep\_equal
+- [ ] string.trim
+#### Milestone 2 Roadmap
 - [ ] macro.ts --!include
 - [ ] macro.ts -U (--dont-define)
 - [ ] macro.ts nesting support
 - [ ] macro.ts advanced ifs
 - [ ] macro.ts runtime stack for complex logic
-- [ ] Enums
-- [ ] table.deep\_equal
-- [ ] string.trim
-### Beta 1.0.0 (Milestone 2) Roadmap
-- [ ] BitArray
+## Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
-- [ ] path
 - [ ] ANSI colors
 - [ ] Enums
 - [ ] OOP stuff
-- [ ] Serializer
+- [ ] table.shallow\_clone
+- [ ] table.deep\_clone
 - [ ] Argument parser
-- [ ] Size formatter (KB, MB...)
 - [ ] Queues
 - [ ] Stacks
 - [ ] binary stuff
-
+### Milestone 4 Roadmap
+- [ ] `TARGET` support (OpenOS, AxOS, maybe MineOS and DuckRTOS) (this is basically just gonna autoset a bunch of defines)
+- [ ] Serializer
+- [ ] path
+- [ ] BitArray
+- [ ] Argument parser
+- [ ] Size formatyer (KB, MB...)
