@@ -17,7 +17,6 @@ This is a macro preprocessor that is used in this project. Written for Bun, migh
 ### Running Tests
 First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)
 ### Milestone 1 Roadmap
-- [ ] Split bstd.lua into multiple files
 - [ ] 100% test coverage
 - [ ] Split test runner's helper functions into a different library to avoid bloat
 - [ ] vec2
@@ -27,6 +26,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] string.trim
 ### Milestone 2 Roadmap
 - [ ] macro.ts --!include
+- [ ] Split bstd.lua into multiple files
 - [ ] macro.ts -U (--dont-define)
 - [ ] macro.ts nesting support
 - [ ] macro.ts advanced ifs
