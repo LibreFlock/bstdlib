@@ -31,17 +31,17 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] macro.ts nesting support
 - [ ] macro.ts advanced ifs
 - [ ] macro.ts runtime stack for complex logic
+- [ ] macro.ts ACTUALLY expand macros
 ## Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
 - [ ] Enums
-- [ ] OOP stuff
 - [ ] table.shallow\_clone
 - [ ] table.deep\_clone
-- [ ] Argument parser
 - [ ] Queues
 - [ ] Stacks
 - [ ] binary stuff
+- [ ] `MIX` macro flag to extend standard libraries
 ### Milestone 4 Roadmap
 - [ ] `TARGET` support (OpenOS, AxOS, maybe MineOS and DuckRTOS) (this is basically just gonna autoset a bunch of defines)
 - [ ] Serializer
@@ -49,3 +49,5 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] BitArray
 - [ ] Argument parser
 - [ ] Size formatter (KB, MB...)
+- [ ] OOP stuff
+
