@@ -229,9 +229,18 @@ end
 -- Converts a hex string back into a normal string.
 function t.bytes.from_hex(str)
 	local out = ""
+	local last = ""
 	for ch in t.string.chars(str)
 	do
-		out = out .. string.char(ch)
+		if last == "" then
+			last = ch
+			goto cont
+		end
+		local hxb = last .. ch
+
+		out = out .. tonumber(hxb, 16)
+		last = ""
+		::cont::
 	end
 	return out
 end
