@@ -87,7 +87,7 @@ local function test(text, func)
 		fail = fail + 1
 	end
 end
-local function table_equals(s1, s2)
+function table_equals(s1, s2)
 	for k, v in pairs(s1)
 	do
 		if s2[k] ~= s1[k] then
