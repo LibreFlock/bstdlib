@@ -18,10 +18,6 @@ jobs:
     - name: Build bstdlib
       run: |
         bun ./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM
-
-    - name: Test bstdlib
-      run: |
-        lua test.lua
     
     - uses: actions/upload-artifact@v4
       with:
@@ -30,3 +26,7 @@ jobs:
         if-no-files-found: warn
         retention-days: 5
 
+    - name: Test bstdlib
+      run: |
+        lua test.lua
+    
