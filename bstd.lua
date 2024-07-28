@@ -238,7 +238,7 @@ function t.bytes.from_hex(str)
 		end
 		local hxb = last .. ch
 
-		out = out .. tonumber(hxb, 16)
+		out = out .. string.char(tonumber(hxb, 16))
 		last = ""
 		::cont::
 	end
