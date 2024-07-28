@@ -57,7 +57,11 @@ local function expect(name, value)
 		end
 	}
 end
-
+local function strf_util(fstr)
+	return function(...)
+		return string.format(fstr, ...)
+	end
+end
 local function suite(text, func)
 	io.write(string.format("* %s", text))
 	if not bstd[text] then
@@ -180,13 +184,25 @@ suite('table', function()
 			bstd.table.has_key(kvtarget, "d") and not
 			bstd.table.has_key(kvtarget, "duck")
 	end)
-	test('has_value', function()
-		return bstd.table.has_value(kvtarget, 1) and
-			bstd.table.has_value(kvtarget, 2) and
-			bstd.table.has_value(kvtarget, 3) and
-			bstd.table.has_value(kvtarget, 4) and not
-			bstd.table.has_value(kvtarget, 5) and not
-			bstd.table.has_value(kvtarget, "d")
+	test('has_value dictionary', function()
+		local s = strf_util("has_value(kvtarget, %s)")
+		return expect(s"1", bstd.table.has_value(kvtarget, 1)):is_true()
+			:expect(s"2", bstd.table.has_value(kvtarget, 2)):is_true()
+			:expect(s"3", bstd.table.has_value(kvtarget, 3)):is_true()
+			:expect(s"4", bstd.table.has_value(kvtarget, 4)):is_true()
+			:expect(s"5", bstd.table.has_value(kvtarget, 5)):is_false()
+			:expect(s"d", bstd.table.has_value(kvtarget, "d")):is_false()
+			:done()
+	end)
+	test('has_key table array', function()
+		local arr = {1, 2, 3, 4}
+		local s = strf_util("has_key(arr, %s)")
+		return expect(s"1", bstd.table.has_key(arr, 1)):is_true()
+			:expect(s"2", bstd.table.has_key(arr, 2)):is_true()
+			:expect(s"3", bstd.table.has_key(arr, 3)):is_true()
+			:expect(s"4", bstd.table.has_key(arr, 4)):is_true()
+			:expect(s"\"d\"", bstd.table.has_key(arr, "d")):is_false()
+			:done()
 	end)
 	test('at', function ()
 		local target = {1, 2, 3, 4}

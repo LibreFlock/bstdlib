@@ -79,7 +79,7 @@ end
 -- Checks if a table has a specific value. (`val`)
 -- Returns a boolean
 function t.table.has_value(tab, val)
-	for value in t.table.itval(tab)
+	for k, value in pairs(tab)
 	do
 		if value == val then return true end
 	end
@@ -89,7 +89,7 @@ end
 function t.table.itval(tab)
 	local i = 1
 	return function ()
-		if i >= #tab then return nil end
+		if i > #tab then return nil end
 		i = i + 1
 		return tab[i - 1]
 	end
