@@ -15,10 +15,14 @@ jobs:
 
     - uses: oven-sh/setup-bun@v2
 
-    - name: test
+    - name: Build bstdlib
       run: |
         bun ./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM
+
+    - name: Test bstdlib
+      run: |
         lua test.lua
+    
     - uses: actions/upload-artifact@v4
       with:
         name: bstd.lua
