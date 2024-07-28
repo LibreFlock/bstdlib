@@ -16,26 +16,31 @@ The version from GitHub Actions is the default build of bstd.lua in this reposit
 This is a macro preprocessor that is used in this project. Written for Bun, might not work on other runtimes. Once it gets mature enough it'll probably be moved to its own repository.
 ### Running Tests
 First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)
-
-### Beta 1.0.0 Roadmap
+### Milestone 1 Roadmap
+- [ ] Split bstd.lua into multiple files
+- [ ] 100% test coverage
+- [ ] Split test runner's helper functions into a different library to avoid bloat
 - [ ] vec2
 - [ ] vec3
+- [ ] macro.ts --!include
+- [ ] macro.ts -U (--dont-define)
+- [ ] macro.ts nesting support
+- [ ] macro.ts advanced ifs
+- [ ] macro.ts runtime stack for complex logic
+- [ ] Enums
+- [ ] table.deep\_equal
+- [ ] string.trim
+### Beta 1.0.0 (Milestone 2) Roadmap
 - [ ] BitArray
 - [ ] UUID
 - [ ] path
 - [ ] ANSI colors
 - [ ] Enums
 - [ ] OOP stuff
-- [ ] string.trim
-- [ ] table.deep\_equal
 - [ ] Serializer
 - [ ] Argument parser
 - [ ] Size formatter (KB, MB...)
 - [ ] Queues
 - [ ] Stacks
 - [ ] binary stuff
-- [ ] macro.ts nesting support
-- [ ] macro.ts advanced ifs
-- [ ] macro.ts runtime stack for complex logic
-- [ ] macro.ts -U (--dont-define)
 
