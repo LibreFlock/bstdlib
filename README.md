@@ -25,7 +25,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] Enums
 - [ ] table.deep\_equal
 - [ ] string.trim
-#### Milestone 2 Roadmap
+### Milestone 2 Roadmap
 - [ ] macro.ts --!include
 - [ ] macro.ts -U (--dont-define)
 - [ ] macro.ts nesting support
