@@ -15,7 +15,7 @@ local function expect(name, value)
 		end,
 		equals_to = function(self, b)
 			if self.val ~= b then
-				return self:_add_error(string.format("value '%s' expected to be '%s' but got '%s' instead", self.name, self.val, b))
+				return self:_add_error(string.format("value '%s' expected to be '%s' but got '%s' instead", self.name, b, self.val))
 			end
 			return self
 		end,
