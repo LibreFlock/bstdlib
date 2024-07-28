@@ -1,6 +1,6 @@
 name: test
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test:
@@ -13,8 +13,9 @@ jobs:
       with:
         luaVersion: "5.4.4"
 
-    - uses: leafo/gh-actions-luarocks@v4
+    - uses: oven-sh/setup-bun@v2
 
     - name: test
       run: |
+        bun ./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM
         lua test.lua
