@@ -48,4 +48,4 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] path
 - [ ] BitArray
 - [ ] Argument parser
-- [ ] Size formatyer (KB, MB...)
+- [ ] Size formatter (KB, MB...)
