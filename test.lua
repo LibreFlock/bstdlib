@@ -134,7 +134,7 @@ local function from_iter(i) -- gotta roll our own implementation, dogfeeding is 
 	end
 	return out
 end
-
+-- Tests start here
 suite('string', function() -- TODO: finish this
 	test('isplit simple', function()
 		return table_equals(
