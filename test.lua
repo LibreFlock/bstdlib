@@ -230,8 +230,10 @@ suite('url', function()
 	test('decode', function()
 		--return bstd.url.decode('Hello%20world%21') == "Hello world!" and
 		--	bstd.url.decode('Hello+world%21') == "Hello world!"
-		return expect("decode('Hello%20world%21')"):equals_to("Hello world!")
-			:expect("decode('Hello+world%21')"):equals_to("Hello world!"):done()
+		return expect("decode('Hello%20world%21')", bstd.url.decode('Hello%20world%21'))
+			:equals_to("Hello world!")
+			:expect("decode('Hello+world%21')", bstd.url.decode('Hello+world%21'))
+			:equals_to("Hello world!"):done()
 	end)
 end)
 suite('bytes', function()
