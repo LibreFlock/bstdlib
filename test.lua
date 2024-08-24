@@ -222,28 +222,32 @@ suite('filesystem', function()
 end)
 suite('url', function()
 	test('encode', function()
-		return bstd.url.encode('Hello world!') == "Hello+world%21"
+		-- return bstd.url.encode('Hello world!') == "Hello+world%21"
+		return expect("encode('Hello world!')", bstd.url.encode('Hello world!'))
+			:equals_to("Hello+world%21"):done()
 	end)
 
 	test('decode', function()
-		return bstd.url.decode('Hello%20world%21') == "Hello world!" and
-			bstd.url.decode('Hello+world%21') == "Hello world!"
+		--return bstd.url.decode('Hello%20world%21') == "Hello world!" and
+		--	bstd.url.decode('Hello+world%21') == "Hello world!"
+		return expect("decode('Hello%20world%21')"):equals_to("Hello world!")
+			:expect("decode('Hello+world%21')"):equals_to("Hello world!"):done()
 	end)
 end)
 suite('bytes', function()
 	local target = "hello"
 	local t2 = "454647"
 	test('string', function()
-		local s = "bytes.string(target)"
+		local s = "string(target)"
 		return expect(s, from_iter(bstd.bytes.string(target))):table_equal_to({104, 101, 108, 108, 111})
 		:done()
 	end)
 	test('from_hex', function()
-		local s = "bytes.from_hex(t2)"
+		local s = "from_hex(t2)"
 		return expect(s, bstd.bytes.from_hex(t2)):equals_to("EFG"):done()
 	end)
 	test('to_hex', function()
-		local s = "bytes.to_hex('EFG')"
+		local s = "to_hex('EFG')"
 		return expect(s, bstd.bytes.to_hex("EFG")):equals_to(t2):done()
 	end)
 end)
