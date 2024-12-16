@@ -25,10 +25,11 @@ local t = {
 }
 
 --!ifndef NO_STRING
+
 -- Split a string, using Lua patterns
--- `str` is the string to split
--- `sp` is the separator
--- returns an iterator
+---@param str string The string to split
+---@param sp string Separator
+---@return fun(): string iterator Iterator
 function t.string.isplit(str, sp)
 	if sp == nil then
 		sp = "%s"
@@ -36,9 +37,12 @@ function t.string.isplit(str, sp)
 	local mstr = "\0" .. str .. "\0" -- TODO: make sure a space gets added if the input *starts or ends* with the separator
 	return string.gmatch(str, "([^" .. sp .. "]+)")
 end
--- Safe version of string.isplit, doesn't use Lua patterns
--- Use this if you can't trust the `sp` argument (if you are passing user input to it or something)
--- Arguments are the same as isplit
+-- Safe version of string.isplit, doesn't use Lua patterns.
+-- Use this if you can't trust the `sp` argument (if you are passing user input to it or something).
+-- Arguments are the same as isplit, but behaves slightly differently (seems to behave the same as JS's .split())
+---@param str string The string to be split
+---@param sp string Separator
+---@return fun(): string iterator Iterator
 function t.string.isplit_s(str, sp) -- there is probably a better way to do this but fuck it we ball
 	local currentPos = 1
 	local previousPos = 1
@@ -63,25 +67,39 @@ function t.string.isplit_s(str, sp) -- there is probably a better way to do this
 end
 
 -- Non-iterator version of isplit. Returns a table array
+---@param str string The string to be split
+---@param sp string Separator
+---@returns string[]
 function t.string.split(str, sp)
 	return t.table.from_iterator(t.string.isplit(str, sp))
 end
 -- Non-iterator version of isplit_s. Returns a table array
+---@param str string The string to be split
+---@param sp string Separator
+---@returns string[]
 function t.string.split_s(str, sp)
 	return t.table.from_iterator(t.string.isplit_s(str, sp))
 end
 
 -- Checks if a string (`str`) starts with another (`s`)
+---@param str string
+---@param s string
+---@return boolean
 function t.string.starts_with(str, s)
 	return string.sub(str, 1, #s) == s
 end
 
 -- Checks if a string (`str`) ends with another (`s`)
+---@param str string
+---@param s string
+---@return boolean
 function t.string.ends_with(str, s)
 	return string.sub(str, #str-#s+1, #str) == s
 end
 
 -- Creates an iterator going over every character on a string.
+---@param str string
+---@return fun(): string iterator
 function t.string.chars(str)
 	local i = 1
 	return function()
