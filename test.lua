@@ -101,6 +101,19 @@ tu.suite('table', function()
 		return tu.expect("at(target, 1)", bstd.table.at(target, 1)):equals_to(1)
 			:expect("at(target, 2)", bstd.table.at(target, 2)):equals_to(2)
 			:expect("at(target, 3)", bstd.table.at(target, 3)):equals_to(3)
+			:expect("at(target, -1)", bstd.table.at(target, -1)):equals_to(4)
+			:done()
+	end)
+	tu.test('from_iterator', function ()
+		local i = 0
+		local iter = function ()
+			if i > 10 then return nil end
+			i = i + 1
+			return i
+		end
+		
+		return tu.expect("from_iterator(target)", bstd.table.from_iterator(iter))
+			:table_equal_to({1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11})
 			:done()
 	end)
 end)
