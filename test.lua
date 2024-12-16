@@ -35,6 +35,12 @@ tu.suite('string', function() -- TODO: finish this
 			{ "hey", "sus", "aaaa" }
 		)
 	end)
+	tu.test('split safe (three chars)', function()
+		return tu.table_equals(
+			bstd.string.split_s("heyXYZsusXYZaaaa", "XYZ"),
+			{ "hey", "sus", "aaaa" }
+		)
+	end)
 	
 
 	tu.test('starts with', function()
