@@ -23,12 +23,19 @@ tu.suite('string', function() -- TODO: finish this
 			{ "hey", "suss", "aaaaa" }
 		)
 	end)
-	tu.test('split safe', function()
+	tu.test('split safe (one char)', function()
 		return tu.table_equals(
 			bstd.string.split_s("hey/sus/aaaa", "/"),
-			{ "hey", "suss", "aaaa" }
+			{ "hey", "sus", "aaaa" }
 		)
 	end)
+	tu.test('split safe (two chars)', function()
+		return tu.table_equals(
+			bstd.string.split_s("hey:/sus:/aaaa", ":/"),
+			{ "hey", "sus", "aaaa" }
+		)
+	end)
+	
 
 	tu.test('starts with', function()
 		return bstd.string.starts_with('AMONGUS', 'AMO') and

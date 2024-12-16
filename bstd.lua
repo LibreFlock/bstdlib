@@ -44,8 +44,8 @@ end
 ---@param sp string Separator
 ---@return fun(): string iterator Iterator
 function t.string.isplit_s(str, sp) -- there is probably a better way to do this but fuck it we ball
-	local currentPos = 1
-	local previousPos = 1
+	local currentPos = 1            -- this will also likely implode if malformed data comes in
+	local previousPos = 1           -- TODO: this breaks on anything with a separator that's not exactly 3 characters, wtf?
 	
 	return function ()
 		if currentPos >= #str then return nil end
