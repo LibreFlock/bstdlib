@@ -39,7 +39,7 @@ end
 -- Safe version of string.isplit, doesn't use Lua patterns
 -- Use this if you can't trust the `sp` argument (if you are passing user input to it or something)
 -- Arguments are the same as isplit
-function t.string.isplit_s(str, sp)
+--[[function t.string.isplit_s(str, sp)
 	local opos = 1
 	local size = #sp
 	local buf = ""
@@ -47,6 +47,7 @@ function t.string.isplit_s(str, sp)
 		repeat
 			local oend = opos + size
 			local subs = string.sub(str, opos, oend)
+			print(string.format("opos=%d, size=%d, buf='%s', oend=%d, subs='%s'", opos, size, buf, oend, subs))
 			if subs == sp then
 				local duck = buf
 				buf = ""
@@ -55,6 +56,49 @@ function t.string.isplit_s(str, sp)
 				buf = buf .. subs
 			end
 		until opos + size >= #str
+	end
+end]]
+--[[function t.string.isplit_s(str, sp)
+	local currentPosition = 0
+	local seperatorSize = #sp
+	local buffer = ""
+	return function ()
+		repeat
+			local nextPos = currentPosition + seperatorSize
+			local workingStr = string.sub(str, currentPosition, nextPos)
+			print(string.format("CP=%d, NP=%d, wStr='%s'", currentPosition, nextPos, workingStr))
+			if workingStr == sp or currentPosition == #str then
+				local temp = buffer
+				buffer = ""
+				currentPosition = currentPosition + seperatorSize
+				return temp
+			else
+				buffer = buffer .. workingStr
+				currentPosition = nextPos
+			end
+		until currentPosition >= #str+1
+	end
+end]]
+function t.string.isplit_s(str, sp) -- there is probably a better way to do this but fuck it we ball
+	local currentPos = 1
+	local previousPos = 1
+	
+	return function ()
+		if currentPos >= #str then return nil end
+		local wStr = ""
+		--print(string.format("PR pP: %d, cP=%d", previousPos, currentPos))
+		repeat
+			wStr = string.sub(str, currentPos, currentPos+#sp-1) -- who at the lua dev team decided it would be a good idea to start indexes at 1
+			currentPos = currentPos + 1
+			--print("wStr:",wStr)
+		until wStr == sp or currentPos >= #str
+		local subBy = #sp - 1
+		if currentPos + (#sp - 1) > #str then subBy = 0 end
+		--print(string.format("AR pP: %d, cP=%d, cP-s=%d", previousPos, currentPos, currentPos-subBy))
+		local segment = string.sub(str, previousPos, currentPos-subBy)
+		previousPos = currentPos+#sp-1
+		--print("Segment:",segment)
+		return segment
 	end
 end
 
