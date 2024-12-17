@@ -111,7 +111,7 @@ end
 --!end
 --!ifndef NO_TABLE
 -- Checks if a table has a specified key.
--- Returns a boolean.
+---@return boolean
 function t.table.has_key(tab, key)
 	for k, v in pairs(tab)
 	do
@@ -120,7 +120,7 @@ function t.table.has_key(tab, key)
 	return false
 end
 -- Checks if a table has a specific value. (`val`)
--- Returns a boolean
+---@return boolean
 function t.table.has_value(tab, val)
 	for k, value in pairs(tab)
 	do
@@ -129,6 +129,7 @@ function t.table.has_value(tab, val)
 	return false
 end
 -- Creates a iterator going over the values of a table.
+---@return fun(): any
 function t.table.itval(tab)
 	local i = 1
 	return function ()
@@ -139,6 +140,7 @@ function t.table.itval(tab)
 end
 -- Creates a table from an iterator (`it`).
 -- Returns a table array.
+---@return any[]
 function t.table.from_iterator(it)
 	local tab = {}
 	for value in it
@@ -148,6 +150,9 @@ function t.table.from_iterator(it)
 	return tab
 end
 
+--- Gets a value from a table at `p`, accepts negative values
+---@param tab any[]
+---@param p integer
 function t.table.at(tab, p)
 	if p > 0 then
 		return tab[p]
@@ -197,6 +202,8 @@ end
 --!ifndef NO_URL
 -- totally not taken from /bin/pastebin.lua
 -- Encodes an URL to be used in a string. (like " " -> "%20")
+---@param code string URL to be encoded
+---@return string
 function t.url.encode(code)
 	if code then
 		code = string.gsub(code, "([^%w ])", function(c)
@@ -207,6 +214,8 @@ function t.url.encode(code)
 	return code
 end
 -- Decodes an URL. (like "%20" -> " ")
+---@param code string The URL to be decoded
+---@return string
 function t.url.decode(code)
 	if code then
 		code = string.gsub(code, "(%%[A-Fa-f0-9][A-Fa-f0-9])", function(c)
@@ -218,7 +227,20 @@ function t.url.decode(code)
 end
 --!end
 --!ifdef INCL_FSTR
-function t.f(str, ...) -- format strings
+local fstrTable = {}
+-- Set arguments for the format string
+function t.fset(...)
+	fstrTable = table.pack(...)
+end
+-- bstd format strings  
+-- Example:
+-- ```lua
+-- fset("user", "duck")
+-- print(f"Hello {1}, you have a {2}") -- Prints "Hello user, you have a duck"
+-- ```
+---@param str string The string to be formatted
+---@return string
+function t.f(str)
 	local out = "" -- in case you want to use this instead of string.format for whatever reason
 	local pos = 1
 	repeat
@@ -226,14 +248,15 @@ function t.f(str, ...) -- format strings
 		if dStart == nil then break end
 		local indexStr = string.sub(str, dStart+1, dEnd-1)
 		local index = tonumber(indexStr)
-		print(indexStr)
+		-- print(indexStr)
 		if index == nil or index < 1 then error('Invalid format string index at ' .. dStart) end
-		out = out .. string.sub(str, pos, dStart - 1) .. select(index, ...)
+		out = out .. string.sub(str, pos, dStart - 1) .. fstrTable[index]
 		pos = dEnd+1
 	until pos >= #str
 	out = out .. string.sub(str, pos, #str)
 	return out
 end
+
 --!end
 --!ifndef NO_BYTES
 -- Creates an iterator going over the bytes of a string. Each iteration has a number argument.
