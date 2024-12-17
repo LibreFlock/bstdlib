@@ -32,7 +32,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] macro.ts advanced ifs
 - [ ] macro.ts runtime stack for complex logic
 - [ ] macro.ts ACTUALLY expand macros
-## Beta 1.0.0 (Milestone 3) Roadmap
+### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
 - [ ] Enums
