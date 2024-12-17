@@ -67,7 +67,7 @@ function t.strf_util(fstr)
 end
 function t.suite(text, func)
 	io.write(string.format("* %s", text))
-	if not bstd[text] then
+	if bstd[text] == nil then
 		io.write(" - skipped\n")
 		return false
 	end

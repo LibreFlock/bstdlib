@@ -285,13 +285,13 @@ function t.vec2.new(px, py)
 		x = px[1] or px.x
 		y = px[2] or px.y
 	end
-	local t = {
+	local v = {
 		x = x,
 		y = y
 	}
-	setmetatable(t, {
+	setmetatable(v, {
 		__tostring = function(self)
-			return "vec2{" .. tostring(self.x) .. ", " .. tostring(self.y) .. "}"
+			return "vec2(" .. tostring(self.x) .. ", " .. tostring(self.y) .. ")"
 		end,
 		__len = function(self) return 2 end,
 		__unm = function(self)
@@ -353,7 +353,7 @@ function t.vec2.new(px, py)
 		end
 
 	})
-	return t
+	return v
 end
 --!end
 
