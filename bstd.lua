@@ -40,28 +40,27 @@ end
 -- Safe version of string.isplit, doesn't use Lua patterns.
 -- Use this if you can't trust the `sp` argument (if you are passing user input to it or something).
 -- Arguments are the same as isplit, but behaves slightly differently (seems to behave the same as JS's .split())
----@param str string The string to be split
----@param sp string Separator
+---@param _str string The string to be split
+---@param delim string Separator/delimiter
 ---@return fun(): string? iterator Iterator
-function t.string.isplit_s(str, sp) -- there is probably a better way to do this but fuck it we ball
-	local currentPos = 1            -- this will also likely implode if malformed data comes in
-	local previousPos = 1           -- TODO: this breaks on anything with a separator that's not exactly 3 characters, wtf?
-	
+function t.string.isplit_s(_str, delim)
+	local currentPos = 1
+	local str = _str .. delim -- replicate JS behavior
 	return function ()
-		if currentPos >= #str then return nil end
-		local wStr = ""
-		--print(string.format("PR pP: %d, cP=%d", previousPos, currentPos))
-		repeat
-			wStr = string.sub(str, currentPos, currentPos+#sp-1) -- who at the lua dev team decided it would be a good idea to start indexes at 1
-			currentPos = currentPos + 1
-			--print("wStr:",wStr)
-		until wStr == sp or currentPos >= #str
-		local subBy = #sp - 1
-		if currentPos + (#sp - 1) > #str then subBy = 0 end
-		--print(string.format("AR pP: %d, cP=%d, cP-s=%d", previousPos, currentPos, currentPos-subBy))
-		local segment = string.sub(str, previousPos, currentPos-subBy)
-		previousPos = currentPos+#sp-1
-		--print("Segment:",segment)
+		-- if currentPos >= #str then return nil end
+		local delimStart, delimEnd = string.find(str, delim, currentPos, true)
+		-- print(currentPos, delimStart, delimEnd, #str)
+		if delimStart == nil or delimEnd == nil then
+			if currentPos <= #str then
+				local tmp = string.sub(str, currentPos, #str)
+				currentPos = currentPos + #delim
+				return tmp
+			else
+				return nil
+			end
+		end
+		local segment = string.sub(str, currentPos, delimStart-1)
+		currentPos = delimEnd+1
 		return segment
 	end
 end
