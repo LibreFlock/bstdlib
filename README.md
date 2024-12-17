@@ -50,4 +50,4 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] Argument parser
 - [ ] Size formatter (KB, MB...)
 - [ ] OOP stuff
-
+- [ ] bstd.inspect
