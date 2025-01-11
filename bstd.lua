@@ -563,6 +563,12 @@ setmetatable(t.switch, {
 
 --!end
 
+--!ifndef NO_NOOP
+function t.noop() -- does literally nothing
+
+end
+--!end
+
 --!ifndef NO_RET
 return t
 --!end
