@@ -163,6 +163,38 @@ function t.table.at(tab, p)
 		return tab[#tab + (p + 1)] -- i hate 1-based indexingi hate 1-based indexedi hate-
 	end
 end
+-- yes this will overflow the stack if the tables are too nested
+function t.table.deep_equal(s1, s2)
+	for k, v in pairs(s1)
+	do
+		if type(s1[k]) ~= type(s2[k]) then
+			return false
+		end
+		if type(s1[k]) == "table" then
+			if not t.table.deep_equal(s1[k], s2[k]) then
+				return false
+			end
+		elseif s1[k] ~= s2[k] then
+			return false
+		end
+	end
+
+	for k, v in pairs(s2)
+	do
+		if type(s1[k]) ~= type(s2[k]) then
+			return false
+		end
+		if type(s2[k]) == "table" then
+			if not t.table.deep_equal(s1[k], s2[k]) then
+				return false
+			end
+		elseif s1[k] ~= s2[k] then
+			return false
+		end
+	end
+	
+	return true
+end
 --!end
 --!ifndef NO_FILESYSTEM
 -- Creates an iterator going over the chunks of a file, also has a block argument in the iterator

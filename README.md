@@ -17,12 +17,12 @@ This is a macro preprocessor that is used in this project. Written for Bun, migh
 ### Running Tests
 First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)
 ### Milestone 1 Roadmap
-- [ ] High test coverage
+- [x] High test coverage
 - [x] Split test runner's helper functions into a different library to avoid bloat
 - [x] vec2
 - [x] vec3
 - [x] Enums
-- [ ] table.deep\_equal
+- [x] table.deep\_equal
 - [ ] string.trim
 ### Milestone 2 Roadmap
 - [ ] macro.ts --!include
