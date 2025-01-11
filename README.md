@@ -21,7 +21,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [x] Split test runner's helper functions into a different library to avoid bloat
 - [x] vec2
 - [x] vec3
-- [ ] Enums
+- [x] Enums
 - [ ] table.deep\_equal
 - [ ] string.trim
 ### Milestone 2 Roadmap

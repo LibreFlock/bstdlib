@@ -463,6 +463,20 @@ function t.vec3.new(px, py, pz)
 end
 --!end
 
+--!ifndef NO_ENUM
+function t.enum(tab)
+	local retv = {}
+
+	for k, v in pairs(tab)
+	do
+		retv[k] = v
+		retv[v] = k
+	end
+
+	return retv
+end
+--!end
+
 --!ifndef NO_RET
 return t
 --!end
