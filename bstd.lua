@@ -382,7 +382,7 @@ function t.vec2.new(px, py)
 end
 --!end
 
---!ifdef NO_VEC3
+--!ifndef NO_VEC3
 function t.vec3.new(px, py, pz)
 	local x, y, z = px, py, pz
 	if type(px) == "table" then
@@ -407,7 +407,7 @@ function t.vec3.new(px, py, pz)
 			if type(a) == "number" then
 				return t.vec3.new(self.x + a, self.y + a, self.z + a)
 			end
-			return t.vec3.new(self.x + a.x, self.y + a.y)
+			return t.vec3.new(self.x + a.x, self.y + a.y, self.z + a.z)
 		end,
 		__sub = function(self, a)
 			if type(a) == "number" then
