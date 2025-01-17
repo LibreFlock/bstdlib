@@ -1,4 +1,5 @@
 #!/usr/bin/env bun
+// Deprecated, moving to the Lua-based macro.lua.
 // TODO: implement else, nesting ifdefs, and whatever else
 import fs from 'node:fs/promises'
 type DefinedMacros = { [key: string]: string }
