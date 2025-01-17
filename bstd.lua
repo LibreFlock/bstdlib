@@ -1,60 +1,64 @@
+--%if not defined("TARGET") then
+--%  define("TARGET", "standalone")
+--%end
+--%local enabled = {}
+--%local function enable(text)
+--%  define("INCLUDE." .. string.upper(text), "")
+--%  table.insert(enabled, text)
+--%end
+--%enable("string")
+--%enable("table")
+--%enable("url")
+--%enable("bytes")
+--%enable("vec2")
+--%enable("vec3")
+--%enable("switch")
+--%enable("noop")
+--%enable("enum")
+--%if var("TARGET") == "OpenOS" then
+--%  enable("filesystem")
+--%end
 local t = {
---!ifndef NO_STRING
-	string = {},
---!end
---!ifndef NO_TABLE
-	table = {},
---!end
---!ifndef NO_FILESYSTEM
+--!ifdef INCLUDE.FILESYSTEM
 	filesystem = {
 		blockSize = 4096
 	},
 --!end
---!ifndef NO_URL
-	url = {},
---!end
---!ifndef NO_BYTES
-	bytes = {},
---!end
---!ifndef NO_VEC2
-	vec2 = {},
---!end
---!ifndef NO_VEC3
-	vec3 = {},
---!end
---!ifndef NO_SWITCH
-	switch = {}
---!end
+--%for k, v in pairs(enabled)
+--%do
+--%  if v ~= "filesystem" then print("\t" .. v .. " = {},\n") end
+--%end
+
 }
 
---!ifndef NO_STRING
+--!ifdef INCLUDE.STRING
 --%include("./src/string.lua")
 --!end
---!ifndef NO_TABLE
+--!ifdef INCLUDE.TABLE
 --%include("./src/table.lua")
 --!end
---!ifndef NO_FILESYSTEM
+--!ifdef INCLUDE.FILESYSTEM
 --%include("./src/filesystem.lua")
 --!end
---!ifndef NO_URL
+--!ifdef INCLUDE.URL
 --%include("./src/url.lua")
 --!end
 --!ifdef INCL_FSTR
 --%include("./src/fstr.lua")
 --!end
---!ifndef NO_BYTES
+--!ifdef INCLUDE.BYTES
 --%include("./src/bytes.lua")
 --!end
 
---!ifndef NO_VEC2
+--!ifdef INCLUDE.VEC2
 --%include("./src/vec2.lua")
 --!end
 
---!ifndef NO_VEC3
+--!ifdef INCLUDE.VEC3
 --%include("./src/vec3.lua")
 --!end
 
---!ifndef NO_ENUM
+--!ifdef INCLUDE.ENUM
 function t.enum(tab)
 	local retv = {}
 
@@ -68,14 +72,14 @@ function t.enum(tab)
 end
 --!end
 
---!ifndef NO_SWITCH
+--!ifdef INCLUDE.SWITCH
 --%include("./src/switch.lua")
 --!end
 
---!ifndef NO_NOOP
+--!ifdef INCLUDE.NOOP
 function t.noop() end -- does literally nothing
 --!end
 
---!ifndef NO_RET
+--!ifdef INCLUDE.RET
 return t
 --!end

@@ -198,6 +198,12 @@ local function processMacros(file, predef)
                 return
             end
             result = result .. duck .. "\n"
+        end,
+        undefine = function(var)
+            defined[var] = nil
+        end,
+        var = function(var)
+            return defined[var]
         end
     })
     return result, defined
