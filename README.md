@@ -25,13 +25,13 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [x] table.deep\_equal
 - [ ] string.trim
 ### Milestone 2 Roadmap
-- [ ] macro.ts --!include
+- [ ] macro.lua --!include
 - [ ] Split bstd.lua into multiple files
-- [ ] macro.ts -U (--dont-define)
-- [ ] macro.ts nesting support
-- [ ] macro.ts advanced ifs
-- [ ] macro.ts runtime stack for complex logic
-- [ ] macro.ts ACTUALLY expand macros
+- [ ] macro.lua -U (--dont-define)
+- [ ] macro.lua nesting support
+- [ ] macro.lua advanced ifs
+- [ ] macro.lua runtime stack for complex logic
+- [ ] macro.lua ACTUALLY expand macros
 ### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
