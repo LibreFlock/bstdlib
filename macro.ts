@@ -31,6 +31,9 @@ function errorMsgString(ctx: CmdContext, err: string) {
 function errorMsg(ctx: CmdContext, err: string) {
 	console.error(errorMsgString(ctx, err));
 }
+function conditionIsTruthy(ctx: CmdContext): boolean {
+	return typeof ctx.infoStack.at(-3) === "boolean" && ctx.getState() === "blockRead" ? ctx.infoStack.at(-3) : true; // hack, fixme
+}
 const macroActions: { [key: string]: (context: CmdContext, args: any[]) => any } = {
 	endifdef(ctx: CmdContext, args: string[]) {
 		const text = args[0];
@@ -54,7 +57,7 @@ const macroCmds: { [key: string]: (args: string[], context: CmdContext) => any }
 	define(args: string[], ctx: CmdContext) {
 		const [name, ...rest] = args;
 		const restStr = rest.join(' ');
-		ctx.defined[name] = restStr;
+		if (conditionIsTruthy(ctx)) ctx.defined[name] = restStr;
 	},
 	ifdef(args: string[], ctx: CmdContext) {
 		ctx.data.block.index++;
