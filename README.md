@@ -23,15 +23,13 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [x] vec3
 - [x] Enums
 - [x] table.deep\_equal
-- [ ] string.trim
 ### Milestone 2 Roadmap
-- [ ] macro.lua --!include
+- [x] macro.lua --!include
 - [ ] Split bstd.lua into multiple files
 - [ ] macro.lua -U (--dont-define)
-- [ ] macro.lua nesting support
-- [ ] macro.lua advanced ifs
-- [ ] macro.lua runtime stack for complex logic
-- [ ] macro.lua ACTUALLY expand macros
+- [x] macro.lua nesting support
+- [x] macro.lua advanced ifs
+- [x] macro.lua ACTUALLY expand macros
 ### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
@@ -42,6 +40,7 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 - [ ] Stacks
 - [ ] binary stuff
 - [ ] `MIX` macro flag to extend standard libraries
+- [ ] string.trim
 ### Milestone 4 Roadmap
 - [ ] `TARGET` support (OpenOS, AxOS, maybe MineOS and DuckRTOS) (this is basically just gonna autoset a bunch of defines)
 - [ ] Serializer
