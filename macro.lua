@@ -12,16 +12,16 @@ local class = {
     end
 }
 
-local function readfile(fname)
-    local h, err = io.open(fname, "r")
+local function readfile(fname, _io)
+    local h, err = (_io or io).open(fname, "r")
     if h == nil then
         print(err)
-        return
+        return nil, err
     end
-    local data = h:read("a")
+    local data, err = h:read("a")
     if data == nil then
-        print("error: data nil")
-        return
+        print(err)
+        return nil, err
     end
     h:close()
     return data
@@ -189,9 +189,17 @@ local function processMacros(file, predef)
                 res = res:gsub(escape_pattern(k), v)
             end
             return res
+        end,
+        include = function(filename)
+            local duck, err = readfile(filename, io)
+            if duck == nil then
+                result = result .. "-- include failed: " .. err .. "\n"
+                return
+            end
+            result = result .. duck .. "\n"
         end
     })
-    return result
+    return result, defined
 end
 
 local function parseArguments(...)
