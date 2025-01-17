@@ -26,7 +26,6 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 ### Milestone 2 Roadmap
 - [x] macro.lua --!include
 - [ ] Split bstd.lua into multiple files
-- [ ] macro.lua -U (--dont-define)
 - [x] macro.lua nesting support
 - [x] macro.lua advanced ifs
 - [x] macro.lua ACTUALLY expand macros
