@@ -1,3 +1,4 @@
+#!/usr/bin/env lua
 -- local io = require("io")
 local debugMode = false
 local class = {

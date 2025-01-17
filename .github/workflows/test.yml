@@ -17,7 +17,7 @@ jobs:
 
     - name: Build bstdlib
       run: |
-        bun ./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM
+        lua ./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM
     
     - uses: actions/upload-artifact@v4
       with:
