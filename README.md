@@ -15,7 +15,7 @@ The version from GitHub Actions is the default build of bstd.lua in this reposit
 ### macro.lua
 This is a macro preprocessor that is used in this project. Once it gets mature enough it'll probably be moved to its own repository. You can already use it for your own projects if you want.
 ### Running Tests
-First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)
+First, build bstdlib with `./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM` then just run `lua test.lua`. You'll have to do this in OpenOS if you want to test filesystem as well (TBD)
 ### Milestone 1 Roadmap
 - [x] High test coverage
 - [x] Split test runner's helper functions into a different library to avoid bloat
