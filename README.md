@@ -34,7 +34,6 @@ First, build bstdlib with `./macro.ts bstd.lua bstdduck.lua -DNO_FILESYSTEM` the
 ### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
-- [ ] Enums
 - [ ] table.shallow\_clone
 - [ ] table.deep\_clone
 - [ ] Queues
