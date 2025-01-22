@@ -81,3 +81,23 @@ function t.table.deep_equal(s1, s2)
 	
 	return true
 end
+
+function t.table.size(tab)
+	local i = 1
+    for k, v in pairs(t)
+    do
+        i = i + 1
+    end
+    return i
+end
+
+function t.table.slice(tbl, first, last, step)
+    local sliced = {}
+
+    for i = first or 1, last or #tbl, step or 1 do
+        --sliced[#sliced+1] = tbl[i]
+        table.insert(sliced, tbl[i])
+    end
+
+    return sliced
+end

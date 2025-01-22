@@ -25,11 +25,11 @@ First, build bstdlib with `./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM` th
 - [x] table.deep\_equal
 ### Milestone 2 Roadmap
 - [x] macro.lua --!include
-- [ ] Split bstd.lua into multiple files
+- [x] Split bstd.lua into multiple files
 - [x] macro.lua nesting support
 - [x] macro.lua advanced ifs
 - [x] macro.lua ACTUALLY expand macros
-- [ ] table.size
+- [x] table.size
 - [ ] table.slice
 ### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
