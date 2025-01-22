@@ -50,3 +50,7 @@ First, build bstdlib with `./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM` th
 - [ ] Size formatter (KB, MB...)
 - [ ] OOP stuff
 - [ ] bstd.inspect
+### Release 1.0.0 (Milestone 5) Roadmap
+(TODO)
+- [ ] Documentation
+
