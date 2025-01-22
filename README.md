@@ -30,7 +30,7 @@ First, build bstdlib with `./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM` th
 - [x] macro.lua advanced ifs
 - [x] macro.lua ACTUALLY expand macros
 - [x] table.size
-- [ ] table.slice
+- [x] table.slice
 ### Beta 1.0.0 (Milestone 3) Roadmap
 - [ ] UUID
 - [ ] ANSI colors
