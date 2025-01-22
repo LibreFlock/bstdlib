@@ -17,7 +17,7 @@
 --%enable("noop")
 --%enable("enum")
 --%enable("json")
---%if var("TARGET") ~= "Embedded" and var("EMBED_FILE") ~= nil then enable("ret") end
+--%if var("TARGET") ~= "Embedded" then enable("ret") end
 --%if var("TARGET") == "OpenOS" then
 --%  enable("filesystem")
 --%end
