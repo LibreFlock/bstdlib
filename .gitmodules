@@ -1,3 +1,6 @@
 [submodule "src/json.lua"]
 	path = src/json.lua
 	url = git@github.com:rxi/json.lua.git
+[submodule "src/msgpack"]
+	path = src/msgpack
+	url = git@github.com:kieselsteini/msgpack.git

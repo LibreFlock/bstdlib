@@ -17,6 +17,7 @@
 --%enable("noop")
 --%enable("enum")
 --%enable("json")
+--%enable("msgpack")
 --%if var("TARGET") ~= "Embedded" then enable("ret") end
 --%if var("TARGET") == "OpenOS" then
 --%  enable("filesystem")
@@ -88,6 +89,13 @@ local function init_json() -- workaround while the bundler isn't written
 --%include("./src/json.lua/json.lua")
 end
 t.json = init_json();
+--!end
+
+--!ifdef INCLUDE.MSGPACK
+local function init_msgpack() -- workaround while the bundler isn't written
+--%include("./src/msgpack/msgpack.lua")
+end
+t.msgpack = init_msgpack()
 --!end
 
 --%if var("TARGET") == "Embedded" and defined("EMBED_FILE") then
