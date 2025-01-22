@@ -1,0 +1,3 @@
+[submodule "src/json.lua"]
+	path = src/json.lua
+	url = git@github.com:rxi/json.lua.git

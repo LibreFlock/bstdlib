@@ -3,6 +3,7 @@
 --%end
 --%local enabled = {}
 --%local function enable(text)
+--%  if defined("NO_" .. string.upper(text)) then return end
 --%  define("INCLUDE." .. string.upper(text), "")
 --%  table.insert(enabled, text)
 --%end
@@ -15,6 +16,8 @@
 --%enable("switch")
 --%enable("noop")
 --%enable("enum")
+--%enable("json")
+--%if var("TARGET") ~= "Embedded" and var("EMBED_FILE") ~= nil then enable("ret") end
 --%if var("TARGET") == "OpenOS" then
 --%  enable("filesystem")
 --%end
@@ -79,6 +82,17 @@ end
 --!ifdef INCLUDE.NOOP
 function t.noop() end -- does literally nothing
 --!end
+
+--!ifdef INCLUDE.JSON
+local function init_json() -- workaround while the bundler isn't written
+--%include("./src/json.lua/json.lua")
+end
+t.json = init_json();
+--!end
+
+--%if var("TARGET") == "Embedded" and defined("EMBED_FILE") then
+--%include(var"EMBED_FILE")
+--%end
 
 --!ifdef INCLUDE.RET
 return t
