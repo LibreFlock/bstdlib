@@ -91,7 +91,7 @@ t.json = init_json();
 --!end
 
 --%if var("TARGET") == "Embedded" and defined("EMBED_FILE") then
---%include(var"EMBED_FILE")
+--%  include(var"EMBED_FILE")
 --%end
 
 --!ifdef INCLUDE.RET
