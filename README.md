@@ -36,13 +36,14 @@ First, build bstdlib with `./macro.lua bstd.lua bstdduck.lua -DNO_FILESYSTEM` th
 - [ ] ANSI colors
 - [ ] table.shallow\_clone
 - [ ] table.deep\_clone
+- [ ] table.map
 - [ ] Queues
 - [ ] Stacks
 - [ ] binary stuff
 - [ ] `MIX` macro flag to extend standard libraries
 - [ ] string.trim
 ### Milestone 4 Roadmap
-- [ ] `TARGET` support (OpenOS, AxOS, maybe MineOS and DuckRTOS) (this is basically just gonna autoset a bunch of defines)
+- [ ] `TARGET` support (OpenOS, AxOS, KOCOS, maybe MineOS and DuckRTOS) (this is basically just gonna autoset a bunch of defines)
 - [ ] Serializer
 - [ ] path
 - [ ] BitArray
