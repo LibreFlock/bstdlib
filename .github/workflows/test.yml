@@ -8,6 +8,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@master
+      with:
+        submodules: 'true'
 
     - uses: leafo/gh-actions-lua@v10
       with:
