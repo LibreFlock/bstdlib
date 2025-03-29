@@ -45,6 +45,10 @@ local t = {
 --%include("./src/filesystem.lua")
 --!end
 --!ifdef INCLUDE.URL
+local function init_url() -- workaround while the bundler isn't written
+--%include("./src/neturl/lib/net/url.lua")
+end
+t.url = init_url()
 --%include("./src/url.lua")
 --!end
 --!ifdef INCL_FSTR

@@ -4,3 +4,6 @@
 [submodule "src/msgpack"]
 	path = src/msgpack
 	url = git@github.com:kieselsteini/msgpack.git
+[submodule "src/neturl"]
+	path = src/neturl
+	url = https://github.com/golgote/neturl.git
