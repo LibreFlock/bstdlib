@@ -102,7 +102,7 @@ end
 t.msgpack = init_msgpack()
 --!end
 
---%if var("TARGET") == "Embedded" and defined("EMBED_FILE") then
+--%if var("TARGET") == "embedded" and defined("EMBED_FILE") then
 --%  include(var"EMBED_FILE")
 --%end
 
