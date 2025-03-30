@@ -18,7 +18,7 @@
 --%enable("enum")
 --%enable("json")
 --%enable("msgpack")
---%if var("TARGET") ~= "Embedded" then enable("ret") end
+--%if var("TARGET") ~= "embedded" then enable("ret") end
 --%if var("TARGET") == "OpenOS" then
 --%  enable("filesystem")
 --%end
